@@ -3,25 +3,28 @@ package com.pao.laboratory03.enums;
 /**
  * Exercițiul 2 — Enum-uri
  *
- * Creează în acest pachet (lângă acest Main.java) un enum și apoi folosește-l aici.
+ * Creează în acest pachet (lângă acest Main.java) un enum și apoi folosește-l
+ * aici.
  *
  * PASUL 1 — Creează enum-ul Priority.java (fișier separat în același pachet):
- *   - Constante: LOW, MEDIUM, HIGH, CRITICAL
- *   - Câmpuri private: int level, String color
- *   - Constructor privat: Priority(int level, String color)
- *   - Getteri: getLevel(), getColor()
- *   - Metodă abstractă: String getEmoji() — fiecare constantă o implementează diferit
- *     LOW → "🟢", MEDIUM → "🟡", HIGH → "🟠", CRITICAL → "🔴"
- *   - Valorile sugerate:
- *     LOW(1, "green"), MEDIUM(2, "yellow"), HIGH(3, "orange"), CRITICAL(4, "red")
+ * - Constante: LOW, MEDIUM, HIGH, CRITICAL
+ * - Câmpuri private: int level, String color
+ * - Constructor privat: Priority(int level, String color)
+ * - Getteri: getLevel(), getColor()
+ * - Metodă abstractă: String getEmoji() — fiecare constantă o implementează
+ * diferit
+ * LOW → "🟢", MEDIUM → "🟡", HIGH → "🟠", CRITICAL → "🔴"
+ * - Valorile sugerate:
+ * LOW(1, "green"), MEDIUM(2, "yellow"), HIGH(3, "orange"), CRITICAL(4, "red")
  *
  * PASUL 2 — În acest Main.java:
- *   a) Parcurge toate valorile cu Priority.values() și afișează:
- *      "emoji name (level=X, color=Y)"
- *   b) Folosește switch pe un Priority și afișează un mesaj specific.
- *   c) Convertește un String în Priority cu Priority.valueOf("HIGH") — afișează rezultatul.
- *   d) Demonstrează compararea: folosește == între două enum-uri (NU .equals()).
- *   e) Afișează name() și ordinal() pentru fiecare constantă.
+ * a) Parcurge toate valorile cu Priority.values() și afișează:
+ * "emoji name (level=X, color=Y)"
+ * b) Folosește switch pe un Priority și afișează un mesaj specific.
+ * c) Convertește un String în Priority cu Priority.valueOf("HIGH") — afișează
+ * rezultatul.
+ * d) Demonstrează compararea: folosește == între două enum-uri (NU .equals()).
+ * e) Afișează name() și ordinal() pentru fiecare constantă.
  *
  * Output așteptat:
  *
@@ -48,9 +51,41 @@ package com.pao.laboratory03.enums;
  * CRITICAL: name=CRITICAL, ordinal=3
  */
 public class Main {
-    public static void main(String[] args) {
-        // TODO: implementează pașii de mai sus
-        // Hint: creează mai întâi fișierul Priority.java în acest pachet
-    }
-}
+  public static void main(String[] args) {
 
+    System.out.println("=== Toate prioritățile ===");
+    for (Priority priority : Priority.values()) {
+      System.out.println(priority);
+    }
+
+    System.out.println("\n=== Switch pe prioritate ===");
+    Priority highPriority = Priority.HIGH;
+    switch (highPriority) {
+      case LOW:
+        System.out.println("⚪ Prioritate scăzută.");
+        break;
+      case MEDIUM:
+        System.out.println("🟡 Prioritate medie.");
+        break;
+      case HIGH:
+        System.out.println("⚠️ Atenție! Prioritate ridicată!");
+        break;
+      case CRITICAL:
+        System.out.println("🚨 Urgență! Prioritate critică!");
+        break;
+    }
+
+    System.out.println("\n=== valueOf ===");
+    Priority fromString = Priority.valueOf("HIGH");
+    System.out.println("Priority.valueOf(\"HIGH\") = " + fromString);
+
+    System.out.println("\n=== Comparare enum ===");
+    System.out.println("HIGH == HIGH? " + (Priority.HIGH == Priority.HIGH));
+    System.out.println("HIGH == LOW? " + (Priority.HIGH == Priority.LOW));
+
+    System.out.println("\n=== name() și ordinal() ===");
+    for (Priority priority : Priority.values()) {
+      System.out.println(priority.name() + ": name=" + priority.name() + ", ordinal=" + priority.ordinal());
+    }
+  }
+}
