@@ -61,18 +61,10 @@ public class Main {
     System.out.println("\n=== Switch pe prioritate ===");
     Priority highPriority = Priority.HIGH;
     switch (highPriority) {
-      case LOW:
-        System.out.println("⚪ Prioritate scăzută.");
-        break;
-      case MEDIUM:
-        System.out.println("🟡 Prioritate medie.");
-        break;
-      case HIGH:
-        System.out.println("⚠️ Atenție! Prioritate ridicată!");
-        break;
-      case CRITICAL:
-        System.out.println("🚨 Urgență! Prioritate critică!");
-        break;
+      case LOW -> System.out.println("⚪ Prioritate scăzută.");
+      case MEDIUM -> System.out.println("🟡 Prioritate medie.");
+      case HIGH -> System.out.println("⚠️ Atenție! Prioritate ridicată!");
+      case CRITICAL -> System.out.println("🚨 Urgență! Prioritate critică!");
     }
 
     System.out.println("\n=== valueOf ===");
