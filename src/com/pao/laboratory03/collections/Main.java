@@ -1,47 +1,61 @@
 package com.pao.laboratory03.collections;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 
+/**
+ * Demo: ArrayList (ordonat, duplicate), HashSet (fără duplicate), TreeSet (sortat).
+ */
 public class Main {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    System.out.println("=== PARTEA A: HashMap — frecvența cuvintelor ===");
-    String[] words = { "java", "python", "java", "c++", "python", "java", "rust", "c++", "go" };
-    HashMap<String, Integer> frequency = new HashMap<>();
-    for (String word : words) {
-      frequency.put(word, frequency.getOrDefault(word, 0) + 1);
+        // ArrayList — ordonat, permite duplicate, acces prin index
+        System.out.println("=== 1. ArrayList ===");
+        List<String> list = new ArrayList<>();
+        list.add("Ana");
+        list.add("Maria");
+        list.add("Ion");
+        list.add("Ana");
+        System.out.println("Lista: " + list);
+        System.out.println("Dimensiune: " + list.size());
+        System.out.println("Index 1: " + list.get(1));
+        list.remove(0);
+        System.out.println("După remove(0): " + list);
+
+        System.out.println("\nParcurgere cu for clasic:");
+        for (int i = 0; i < list.size(); i++)
+            System.out.println("  [" + i + "] " + list.get(i));
+
+        System.out.println("\nParcurgere cu enhanced for:");
+        for (String name : list)
+            System.out.println("  " + name);
+
+        System.out.println("\nParcurgere cu forEach + lambda:");
+        list.forEach(name -> System.out.println("  " + name));
+
+        // HashSet — fără duplicate, ordine imprevizibilă
+        System.out.println("\n=== 2. HashSet ===");
+        Set<String> set = new HashSet<>();
+        set.add("Ana");
+        set.add("Maria");
+        set.add("Ion");
+        set.add("Ana"); // ignorat — duplicat
+        System.out.println("Set: " + set);
+        System.out.println("Dimensiune: " + set.size());
+        System.out.println("Conține \"Ion\"? " + set.contains("Ion"));
+
+        // TreeSet — fără duplicate, sortat natural
+        System.out.println("\n=== 3. TreeSet ===");
+        TreeSet<String> sortedSet = new TreeSet<>();
+        sortedSet.add("Maria");
+        sortedSet.add("Ana");
+        sortedSet.add("Zoe");
+        sortedSet.add("Ion");
+        System.out.println("TreeSet: " + sortedSet);
+        System.out.println("Primul: " + sortedSet.first());
+        System.out.println("Ultimul: " + sortedSet.last());
     }
-
-    System.out.println("Frecvență: " + frequency);
-
-    System.out.println("Conține 'rust'? " + frequency.containsKey("rust"));
-
-    System.out.println("Chei: " + frequency.keySet());
-    System.out.println("Valori: " + frequency.values());
-
-    for (Map.Entry<String, Integer> entry : frequency.entrySet()) {
-      System.out.println(entry.getKey() + " -> " + entry.getValue());
-    }
-
-    System.out.println("\n=== PARTEA B: TreeMap — sortare automată ===");
-    TreeMap<String, Integer> tree = new TreeMap<>(frequency);
-    System.out.println("Sortat: " + tree);
-    System.out.println("Prima cheie: " + tree.firstKey());
-    System.out.println("Ultima cheie: " + tree.lastKey());
-
-    System.out.println("\n=== PARTEA C: Map cu obiecte ===");
-    HashMap<String, List<String>> materii = new HashMap<>();
-    materii.put("PAOJ", new ArrayList<>(Arrays.asList("Ana", "Mihai", "Ion")));
-    materii.put("BD", new ArrayList<>(Arrays.asList("Ana", "Elena")));
-
-    System.out.println("Studenți la PAOJ: " + materii.getOrDefault("PAOJ", Collections.emptyList()));
-    materii.get("BD").add("George");
-    System.out.println("Studenți la BD (actualizat): " + materii.getOrDefault("BD", Collections.emptyList()));
-  }
 }
