@@ -6,6 +6,10 @@ private/
 .idea
 *.iml
 
+# compiled output & dependencies
+*.class
+*.jar
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/

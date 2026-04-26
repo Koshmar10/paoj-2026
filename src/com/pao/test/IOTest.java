@@ -114,6 +114,23 @@ public class IOTest {
         System.out.printf("Rezultat %s: %d/%d teste trecute.%n", partName, results[0], results[1]);
     }
 
+    /**
+     * Rulează testele direct din directorul dat (fără subdirectoare partX/).
+     * Util pentru exerciții cu teste flat: 1.in/1.out, 2.in/2.out, ...
+     */
+    public static void runFlat(String testsDir, MainMethod main) {
+        File dir = new File(testsDir);
+        if (!dir.exists() || !dir.isDirectory()) {
+            System.out.println("EROARE: directorul de teste nu există: " + dir.getAbsolutePath());
+            return;
+        }
+        int[] results = runPartDir(dir, main);
+        System.out.println();
+        System.out.println("══════════════════════════════════════════════════════════════");
+        System.out.printf("  Total: %d/%d teste trecute%n", results[0], results[1]);
+        System.out.println("══════════════════════════════════════════════════════════════");
+    }
+
     // ── Internal helpers ─────────────────────────────────────────────────────
 
     /**
